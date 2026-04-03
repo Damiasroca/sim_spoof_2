@@ -392,16 +392,31 @@ fi
 
 # --------------- SSAID backup & removal ---------------
 
-if [ -f "$SSAID" ]; then
-    cp "$SSAID" "$SSAID_BAK" 2>/dev/null \
-        && log OK "SSAID backed up to $SSAID_BAK" \
-        || log WARN "SSAID backup failed."
-    rm -f "$SSAID" 2>/dev/null \
-        && log OK "SSAID removed." \
-        || log WARN "SSAID removal failed."
-else
-    log WARN "SSAID file not found. Skipping."
-fi
+echo ""
+echo "SSAID Reset:"
+echo "  Deleting the SSAID file makes your device look"
+echo "  completely new to all apps. However, this will"
+echo "  cause apps to lose licenses, 2FA, and sessions."
+echo "  Skip this if you only need carrier/TTL spoofing."
+printf "Reset SSAID? (y/n, default n): "
+read _ssaid_choice
+case "$_ssaid_choice" in
+    y|Y)
+        if [ -f "$SSAID" ]; then
+            cp "$SSAID" "$SSAID_BAK" 2>/dev/null \
+                && log OK "SSAID backed up to $SSAID_BAK" \
+                || log WARN "SSAID backup failed."
+            rm -f "$SSAID" 2>/dev/null \
+                && log OK "SSAID removed." \
+                || log WARN "SSAID removal failed."
+        else
+            log WARN "SSAID file not found. Skipping."
+        fi
+        ;;
+    *)
+        log OK "SSAID kept unchanged."
+        ;;
+esac
 
 # --------------- Download hosts ---------------
 
