@@ -89,7 +89,7 @@ If the carrier still detects tethering despite TTL fixing:
 
 ### Apps lost their licenses or 2FA
 
-This happens because the SSAID (Settings Secure Android ID) was reset. Each app had a unique identifier that is now gone.
+This only happens if you chose **yes** to the SSAID reset prompt during setup. The SSAID (Settings Secure Android ID) was deleted, and each app's unique identifier is now gone.
 
 **To restore:** If you haven't rebooted multiple times, the backup may still be valid:
 
@@ -106,6 +106,8 @@ sh /data/local/tmp/sim_spoof.sh --uninstall
 ```
 
 **Note:** Once you reboot after SSAID deletion, Android generates new SSAIDs. Restoring the backup at that point may cause conflicts. The backup is most useful immediately after running the spoof script, before the first reboot.
+
+**To avoid this in the future:** Choose `n` (the default) at the SSAID reset prompt. Carrier spoofing, TTL fixing, DNS redirection, and IMEI spoofing all work without resetting the SSAID. The reset is only needed if you want apps to see a completely new device identity.
 
 ### DNS not redirecting
 
