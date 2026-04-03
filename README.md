@@ -39,18 +39,19 @@ The interactive setup walks you through carrier identity (MCCMNC, operator, ISO,
 
 No additional modules required — the script creates its own lightweight hosts module automatically.
 
-## Warning: SSAID Reset
+## Warning: SSAID Reset (Optional)
 
-The script deletes the Android SSAID file (`settings_ssaid.xml`) to reset per-app identifiers. This **will cause some apps to lose their licenses, 2FA bindings, or login sessions** — they'll behave as if installed on a new device.
+The script asks whether to delete the Android SSAID file (`settings_ssaid.xml`). If you choose **yes**, all per-app identifiers are regenerated on next boot — your device appears completely new to apps. This **will cause some apps to lose their licenses, 2FA bindings, or login sessions**.
 
-A backup is created at `/data/local/tmp/settings_ssaid.xml.bak` before deletion. To restore it (before rebooting, ideally):
+**Choose yes** if you need full device fingerprint reset.
+**Choose no** (default) if you only need carrier/TTL spoofing — apps stay untouched.
+
+If you do reset and need to undo it, a backup is saved automatically:
 
 ```bash
 su
 sh /data/local/tmp/restore_ssaid.sh
 ```
-
-Or use `sh sim_spoof.sh --uninstall` to remove all changes and restore the backup.
 
 ## Documentation
 
