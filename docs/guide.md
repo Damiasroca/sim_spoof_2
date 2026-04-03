@@ -120,13 +120,28 @@ A full summary is displayed:
 Apply these settings? (y/n):
 ```
 
-Type `y` to proceed. The script then:
+Type `y` to proceed.
 
-1. Backs up and removes the SSAID file
-2. Downloads the ad-blocking hosts file
-3. Generates three boot scripts in `/data/adb/service.d/`
-4. Sets executable permissions
-5. Prompts for reboot
+### SSAID Reset
+
+```
+SSAID Reset:
+  Deleting the SSAID file makes your device look
+  completely new to all apps. However, this will
+  cause apps to lose licenses, 2FA, and sessions.
+  Skip this if you only need carrier/TTL spoofing.
+Reset SSAID? (y/n, default n):
+```
+
+- **`y`** — backs up and deletes the SSAID file. Apps will see a fresh device identity. You will lose 2FA bindings, app licenses, and login sessions tied to the old SSAID.
+- **`n` (default)** — keeps the SSAID unchanged. Apps remain unaffected. Carrier spoofing, TTL, DNS, and IMEI spoofing still work.
+
+After this prompt, the script:
+
+1. Downloads the ad-blocking hosts file
+2. Generates three boot scripts in `/data/adb/service.d/`
+3. Sets executable permissions
+4. Prompts for reboot
 
 ---
 
