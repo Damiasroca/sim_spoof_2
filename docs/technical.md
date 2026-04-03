@@ -10,7 +10,7 @@ sim_spoof.sh (interactive, runs once)
     ├── Creates:  /data/adb/service.d/SIM-Service.sh
     ├── Creates:  /data/adb/service.d/SIM-TTL.sh
     ├── Creates:  /data/adb/modules/sim-spoof-hosts/  (Magisk module)
-    ├── Backs up: /data/system/users/0/settings_ssaid.xml
+    ├── Backs up: /data/system/users/0/settings_ssaid.xml (if user opts in)
     └── Downloads: hosts file from StevenBlack/hosts
 ```
 
